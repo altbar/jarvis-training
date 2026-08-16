@@ -45,7 +45,7 @@ BASE_URL: `https://raw.githubusercontent.com/altbar/jarvis-training/main`
 index.md        каталог для агента - главный файл хаба
 ponyatiya.md    понятийный блок: LLM, harness, agent.md, агент/субагент
 raspisanie.md   расписание двух дней · org.md, obed.md - оргвопросы
-megadok.md      меню ~30 сценариев Джарвиса
+spravochnik-hermes.md  справочник: 39 сценариев, что поручить Джарвису
 uroki/          8 уроков: день 1 (4) + день 2 (4), пишутся для агента
 ustanovka/      инструкции по установке и подключению
 skills/         готовые скиллы: tg-monitor, web-monitor, bitrix24
