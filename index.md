@@ -27,6 +27,7 @@ description: Каталог всех материалов тренинга. Аг
 - `ustanovka/openrouter-klyuch.md` - подключить доступ к моделям (подписка от бота или свой ключ)
 - `ustanovka/golos.md` - голосовой набор: диктуешь, не печатаешь (Mac - FluidVoice, Windows - Handy)
 - `ustanovka/hermes.md` - поставить Hermes локально: постоянный помощник
+- `ustanovka/model-podklyuchenie.md` - подключение модели к Гермесу: ключ, переключение, типичные ошибки
 - `ustanovka/tg-bot.md` - свой Telegram-бот и связка с Hermes
 - `ustanovka/obsidian.md` - Obsidian + свой Vault (второй мозг)
 - `ustanovka/obsidian-plaginy.md` - гигиена базы: битые ссылки, устаревшие заметки
