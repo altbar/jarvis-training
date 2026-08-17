@@ -74,4 +74,4 @@ description: Сколько людей в мире и в России реаль
 ## Связанное
 
 - `bonus/manifest-zuckerberg.md` - манифест про то, у кого будет сверхинтеллект
-- `ustanovka/openrouter-klyuch.md` - как получить доступ к моделям
+- `ustanovka/klyuch-trening.md` - как подключить доступ, выданный на тренинге
