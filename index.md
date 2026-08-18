@@ -25,8 +25,8 @@ description: Каталог всех материалов тренинга. Аг
 - `ustanovka/terminal.md` - что такое терминал и где он: две минуты, скачивать ничего не надо
 - `ustanovka/opencode.md` - поставить OpenCode (Mac / Windows)
 - `ustanovka/klyuch-trening.md` - **КАНОН доступа:** ключ тренинга (MiniMax), два разных адреса для Hermes и OpenCode, известная ошибка OpenCode с адресом `/anthropic`, проверка
-- `ustanovka/openrouter-klyuch.md` - то же для своего аккаунта OpenRouter (на этом потоке доступ выдаётся не через него)
-- `ustanovka/golos.md` - голосовой набор: диктуешь, не печатаешь (Mac - FluidVoice, Windows - Handy)
+- `ustanovka/openrouter-klyuch.md` - свой аккаунт OpenRouter, если захочешь агрегатор моделей (на этом потоке доступ - подписка MiniMax на твоём аккаунте)
+- `ustanovka/golos.md` - голосовой набор Handy: диктуешь, не печатаешь (Mac и Windows; модель Whisper Medium качается дома)
 - `ustanovka/hermes.md` - поставить Hermes локально: постоянный помощник
 - `ustanovka/model-podklyuchenie.md` - подключение модели к Гермесу: ключ, переключение, типичные ошибки
 - `ustanovka/tg-bot.md` - свой Telegram-бот и связка с Hermes
