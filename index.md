@@ -34,6 +34,7 @@ description: Каталог всех материалов тренинга. Аг
 - `ustanovka/hermes.md` - поставить Hermes локально: постоянный помощник
 - `ustanovka/model-podklyuchenie.md` - подключение модели к Гермесу: ключ, переключение, типичные ошибки
 - `ustanovka/tg-bot.md` - свой Telegram-бот и связка с Hermes
+- `ustanovka/telegram-akkaunt.md` - **продвинутое:** свой Telegram-аккаунт как источник данных (Telethon) - чтение своих каналов и чатов, поиск по переписке за все годы, мониторинг ключевых слов; ключи из России, где запускать, как не потерять аккаунт
 - `ustanovka/obsidian.md` - Obsidian + свой Vault (второй мозг)
 - `ustanovka/obsidian-plaginy.md` - гигиена базы: битые ссылки, устаревшие заметки
 - `ustanovka/exa.md` - поиск для агента (Exa): $20 при регистрации, без карты
