@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Practicum Visualizer</title>
+  <style>
+    :root{color-scheme:light;--navy:#15243a;--navy2:#213550;--cream:#f6f3ed;--paper:#fffdf9;--teal:#15827b;--teal2:#dff0ed;--coral:#e66f52;--gold:#c99634;--purple:#7766a6;--ink:#19253b;--muted:#68758d;--line:#dce2e7;--ok:#2f8a63;--warn:#c46a36;--shadow:0 18px 46px rgba(21,36,58,.09)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.45}button{font:inherit}.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 24px;background:rgba(21,36,58,.96);color:#fff;backdrop-filter:blur(16px)}.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:.02em}.mark{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#4cc0b5,var(--teal));font-size:13px}.mode-switch{display:flex;gap:5px;padding:4px;border-radius:13px;background:rgba(255,255,255,.09)}.mode{border:0;border-radius:10px;padding:9px 14px;background:transparent;color:#bdc7d5;cursor:pointer;font-weight:750}.mode.active{background:#fff;color:var(--navy)}.updated{color:#aebacc;font-size:12px}.shell{display:grid;grid-template-columns:270px minmax(0,1fr);min-height:calc(100vh - 62px)}aside{padding:26px 18px;background:var(--paper);border-right:1px solid var(--line)}.aside-label{margin:0 10px 14px;color:var(--muted);font-size:11px;font-weight:850;letter-spacing:.16em;text-transform:uppercase}.stage{display:flex;width:100%;align-items:center;gap:11px;margin:5px 0;padding:12px;border:0;border-radius:13px;background:transparent;color:var(--muted);text-align:left;cursor:pointer}.stage:hover{background:#f0f4f3;color:var(--ink)}.stage.active{background:var(--teal2);color:var(--teal);font-weight:800}.stage-index{display:grid;place-items:center;flex:0 0 28px;height:28px;border-radius:9px;background:rgba(21,130,123,.09);font-size:11px;font-weight:900}.agent-note{margin-top:28px;padding:15px;border:1px solid #f0c7b9;border-radius:15px;background:#fff5f0;color:#85503f;font-size:13px}.agent-note b{display:block;color:#a94f36;margin-bottom:4px}main{min-width:0;padding:36px clamp(20px,4vw,58px) 70px}.kicker{color:var(--teal);font-size:12px;font-weight:900;letter-spacing:.17em;text-transform:uppercase}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:28px}.page-head h1{max-width:850px;margin:7px 0 8px;font-size:clamp(32px,4vw,50px);line-height:1.04;letter-spacing:-.04em}.subtitle{max-width:760px;margin:0;color:var(--muted);font-size:17px}.badge{flex:0 0 auto;padding:8px 11px;border-radius:999px;background:#e8f4ed;color:var(--ok);font-size:12px;font-weight:850}.badge.demo{background:#fff0e9;color:#b65439}.grid{display:grid;gap:16px}.metrics{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.card{padding:21px;border:1px solid var(--line);border-radius:19px;background:var(--paper);box-shadow:0 1px 0 rgba(255,255,255,.8)}.metric-value{font-size:30px;font-weight:900;letter-spacing:-.03em;color:var(--teal)}.metric-label{margin-top:4px;color:var(--muted);font-size:13px}.section{margin-top:18px}.section h2{margin:0 0 14px;font-size:21px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.swot{grid-template-columns:repeat(2,minmax(0,1fr))}.swot-card{min-height:220px;border-top:4px solid var(--teal)}.swot-card.w{border-top-color:var(--coral)}.swot-card.o{border-top-color:var(--gold)}.swot-card.t{border-top-color:var(--purple)}.swot-card h3{margin:0 0 14px}.factor{display:grid;grid-template-columns:34px 1fr;gap:8px;margin:11px 0;color:var(--ink);font-size:14px}.factor b{color:var(--teal)}.swot-card.w .factor b{color:var(--coral)}.swot-card.o .factor b{color:var(--gold)}.swot-card.t .factor b{color:var(--purple)}.research-row{display:grid;grid-template-columns:46px 1.1fr 1fr;gap:18px;padding:19px 6px;border-bottom:1px solid var(--line)}.research-row:last-child{border-bottom:0}.research-id{color:var(--teal);font-weight:900}.research-row h3{margin:0 0 5px;font-size:16px}.research-row p{margin:0;color:var(--muted);font-size:14px}.source{display:inline-flex;margin-top:8px;color:var(--teal);font-size:12px;font-weight:750}.options{grid-template-columns:repeat(2,minmax(0,1fr))}.option{position:relative;cursor:pointer;transition:.2s ease}.option:hover{transform:translateY(-2px);box-shadow:var(--shadow)}.option.selected{border-color:var(--teal);box-shadow:0 0 0 2px rgba(21,130,123,.15)}.score{position:absolute;top:18px;right:18px;display:grid;place-items:center;width:50px;height:50px;border-radius:50%;background:var(--teal2);color:var(--teal);font-weight:900}.option h3{margin:0 64px 8px 0}.option p{margin:0;color:var(--muted);font-size:14px}.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:15px}.tag{padding:5px 8px;border-radius:8px;background:#eef1f4;color:#5d6980;font-size:11px;font-weight:800}.selected-label{display:inline-block;margin-top:14px;color:var(--teal);font-size:12px;font-weight:900}.timeline{grid-template-columns:repeat(4,minmax(0,1fr))}.phase{position:relative;padding-top:24px}.phase:before{content:"";position:absolute;top:7px;left:0;right:-16px;height:4px;border-radius:5px;background:var(--teal)}.phase:first-child:before{background:var(--coral)}.phase h3{margin:0 0 12px;font-size:17px}.phase .period{color:var(--teal);font-size:12px;font-weight:900}.clean-list{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:14px}.clean-list li{margin:7px 0}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:18px;background:var(--paper)}table{width:100%;border-collapse:collapse;min-width:650px}th,td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;font-size:14px}th{background:#f3f6f6;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em}tr:last-child td{border-bottom:0}.scenario-switch{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}.scenario{border:1px solid var(--line);border-radius:11px;padding:9px 13px;background:#fff;color:var(--muted);cursor:pointer;font-weight:750}.scenario.active{border-color:var(--teal);background:var(--teal);color:#fff}.chart-card{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,.7fr);gap:20px}.chart{min-height:310px;padding:12px;border-radius:15px;background:#fafbfa}.chart svg{display:block;width:100%;height:285px}.chart-metrics{display:grid;align-content:center;gap:12px}.chart-metric{padding:16px;border-left:4px solid var(--teal);background:#f3f7f6;border-radius:0 12px 12px 0}.chart-metric b{display:block;font-size:25px}.chart-metric span{color:var(--muted);font-size:12px}.attention{border-left:5px solid var(--coral)}.attention h3,.insight h3{margin:0 0 6px}.attention p,.insight p{margin:0;color:var(--muted);font-size:14px}.measure-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:15px}.measure{border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:#fff;color:var(--muted);cursor:pointer}.measure.active{border-color:var(--teal);background:var(--teal2);color:var(--teal);font-weight:850}.status{display:inline-flex;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:850}.status.normal{background:#e5f2ea;color:var(--ok)}.status.high{background:#fff0e8;color:var(--warn)}.status.insufficient{background:#eef1f5;color:var(--muted)}.timeline-list{position:relative;margin-left:11px;padding-left:28px;border-left:2px solid var(--line)}.event{position:relative;margin-bottom:15px;padding:17px}.event:before{content:"";position:absolute;left:-37px;top:24px;width:14px;height:14px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 5px var(--cream)}.event h3{margin:0 0 4px}.event p{margin:0;color:var(--muted);font-size:14px}.event .date{color:var(--teal);font-size:12px;font-weight:850}details{margin-top:10px}summary{color:var(--teal);font-size:12px;font-weight:800;cursor:pointer}.empty{padding:44px;text-align:center;color:var(--muted)}.footer-note{margin-top:24px;color:var(--muted);font-size:12px;text-align:center}
+    @media(max-width:1000px){.metrics{grid-template-columns:repeat(2,1fr)}.timeline{grid-template-columns:repeat(2,1fr)}.chart-card{grid-template-columns:1fr}}
+    @media(max-width:760px){.topbar{align-items:flex-start;flex-wrap:wrap}.updated{display:none}.shell{grid-template-columns:1fr}aside{position:static;border-right:0;border-bottom:1px solid var(--line);padding:14px}.stage-list{display:flex;overflow:auto}.stage{min-width:max-content}.agent-note{margin-top:12px}main{padding:25px 16px 55px}.page-head{display:block}.badge{display:inline-flex;margin-top:12px}.two,.three,.swot,.options,.timeline,.metrics{grid-template-columns:1fr}.research-row{grid-template-columns:36px 1fr}.research-row>div:last-child{grid-column:2}.chart-card{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="mark">AI</span>AI Practicum</div>
+    <div class="updated" id="updated"></div>
+  </header>
+  <div class="shell">
+    <aside><div class="aside-label">Этапы</div><div class="stage-list" id="stages"></div><div class="agent-note"><b>Как добавить данные</b>Передайте файлы Codex или Claude Code. Этот HTML только визуализирует подготовленные агентом данные.</div></aside>
+    <main id="content"></main>
+  </div>
+
+  <script id="practicum-data" type="application/json">
+{
+  "meta": {
+    "demo": false,
+    "updatedAt": "2026-09-15",
+    "label": "Утверждённая стратегия · факты и допущения разделены"
+  },
+  "strategy": {
+    "company": {
+      "name": "Ozon",
+      "description": "Крупнейшая российская цифровая платформа E-commerce и Fintech. Стратегический приоритет на 12 месяцев — непрерывность распределённой логистической сети при атаках БПЛА и других инфраструктурных сбоях, поддержанная доверием и устойчивостью экосистемы продавцов.",
+      "metrics": [
+        {
+          "value": "4,163 трлн ₽",
+          "label": "GMV 2025 · факт"
+        },
+        {
+          "value": "998 млрд ₽",
+          "label": "Выручка 2025 · факт"
+        },
+        {
+          "value": "156,4 млрд ₽",
+          "label": "Скорр. EBITDA 2025 · факт"
+        },
+        {
+          "value": "69,2 млн",
+          "label": "Активных покупателей · II кв. 2026"
+        }
+      ]
+    },
+    "swot": {
+      "strengths": [
+        {
+          "id": "S1",
+          "title": "Масштаб: GMV 4,163 трлн ₽ в 2025 году, рост 45%"
+        },
+        {
+          "id": "S2",
+          "title": "65,1 млн активных покупателей и частота более 38 заказов в год"
+        },
+        {
+          "id": "S3",
+          "title": "Распределённая сеть: около 50 фулфилмент-центров, 190 сортировочных центров и 83 тыс. ПВЗ"
+        },
+        {
+          "id": "S4",
+          "title": "Экосистема 750 тыс. продавцов, 400 млн SKU и доля marketplace 83,8%"
+        },
+        {
+          "id": "S5",
+          "title": "Два двигателя прибыли: E-commerce и Fintech"
+        },
+        {
+          "id": "S6",
+          "title": "Ликвидность 650,7 млрд ₽ и снижение обычного долга"
+        },
+        {
+          "id": "S7",
+          "title": "Около 7 тыс. IT-специалистов, собственные технологии и автоматизация"
+        }
+      ],
+      "weaknesses": [
+        {
+          "id": "W1",
+          "title": "Убыток E-commerce до налогообложения 53,2 млрд ₽ при положительной EBITDA"
+        },
+        {
+          "id": "W2",
+          "title": "Обязательства по аренде около 326 млрд ₽"
+        },
+        {
+          "id": "W3",
+          "title": "Стоимость риска Fintech 12,8% во II квартале 2026 года"
+        },
+        {
+          "id": "W4",
+          "title": "Заказы растут быстрее GMV: средний GMV на заказ снижается"
+        },
+        {
+          "id": "W5",
+          "title": "Давление на экономику и доверие продавцов и владельцев ПВЗ"
+        },
+        {
+          "id": "W6",
+          "title": "Нужно одновременно финансировать CAPEX, резервы устойчивости и дисциплину затрат"
+        },
+        {
+          "id": "W7",
+          "title": "Концентрация людей, запасов и пропускной способности в крупных узлах"
+        },
+        {
+          "id": "W8",
+          "title": "Зависимость операций от мобильного интернета и внешней цифровой инфраструктуры"
+        }
+      ],
+      "opportunities": [
+        {
+          "id": "O1",
+          "title": "Дальнейший рост проникновения онлайн-торговли"
+        },
+        {
+          "id": "O2",
+          "title": "Рост региональной плотности заказов и логистики"
+        },
+        {
+          "id": "O3",
+          "title": "Развитие частотных категорий повседневного спроса"
+        },
+        {
+          "id": "O4",
+          "title": "Увеличение доли рынка за счёт масштаба и качества сервиса"
+        },
+        {
+          "id": "O5",
+          "title": "Монетизация трафика через retail media"
+        },
+        {
+          "id": "O6",
+          "title": "Seller OS: AI-инструменты, аналитика и управление экономикой продавцов"
+        },
+        {
+          "id": "O7",
+          "title": "Роботизация и автоматизация складов и сортировки"
+        },
+        {
+          "id": "O8",
+          "title": "Рынок охлаждаемых и специализированных складских мощностей"
+        },
+        {
+          "id": "O9",
+          "title": "Небанковские сервисы Fintech и расчётные продукты"
+        },
+        {
+          "id": "O10",
+          "title": "Комплаенс как конкурентное преимущество после ужесточения регулирования платформ"
+        },
+        {
+          "id": "O11",
+          "title": "ПВЗ и локальные продавцы как слой резервного микрофулфилмента"
+        },
+        {
+          "id": "O12",
+          "title": "Цифровой рубль и новые платёжные сценарии"
+        }
+      ],
+      "threats": [
+        {
+          "id": "T1",
+          "title": "Нормализация темпов роста рынка E-commerce"
+        },
+        {
+          "id": "T2",
+          "title": "Масштаб объединённой платформы Wildberries–Russ"
+        },
+        {
+          "id": "T3",
+          "title": "Конкуренция экосистемы Яндекса за покупателя, продавца и логистику"
+        },
+        {
+          "id": "T4",
+          "title": "Ключевая ставка 14% и давление на спрос и стоимость капитала"
+        },
+        {
+          "id": "T5",
+          "title": "Изменение налоговой нагрузки и правил для продавцов"
+        },
+        {
+          "id": "T6",
+          "title": "Критическая готовность к закону о платформенной экономике с 1 октября 2026 года"
+        },
+        {
+          "id": "T7",
+          "title": "Ужесточение регулирования кредитования и рост риска Fintech"
+        },
+        {
+          "id": "T8",
+          "title": "Низкий чек заказа при росте стоимости курьерской доставки"
+        },
+        {
+          "id": "T9",
+          "title": "Систематические атаки БПЛА на склады и логистическую инфраструктуру"
+        },
+        {
+          "id": "T10",
+          "title": "Риск избыточных складских мощностей и долгосрочных арендных обязательств"
+        }
+      ]
+    },
+    "research": [
+      {
+        "id": "R1",
+        "title": "Годовой отчёт Ozon за 2025 год",
+        "finding": "GMV 4,163 трлн ₽, выручка 998 млрд ₽, скорректированная EBITDA 156,4 млрд ₽; сеть и экосистема достигли системного масштаба.",
+        "implication": "Защищать нужно непрерывность всей платформы, а не отдельный объект.",
+        "source": "Локальный файл · высокая достоверность"
+      },
+      {
+        "id": "R2",
+        "title": "АКИТ: интернет-торговля в I полугодии 2026",
+        "finding": "Рынок продолжает расти, но конкуренция смещается к эффективности и качеству инфраструктуры.",
+        "implication": "Рост нужно удерживать без непропорционального увеличения логистического риска.",
+        "source": "https://www.akit.ru/news/internet-torgovlya-v-pervom-polugodii-2026-7-2-trln-rublej"
+      },
+      {
+        "id": "R3",
+        "title": "Результаты Ozon за II квартал 2026",
+        "finding": "69,2 млн активных покупателей; сохраняются высокие темпы заказов и нагрузка на сеть.",
+        "implication": "Непрерывность логистики напрямую влияет на частоту, удержание и доверие.",
+        "source": "Корпоративная отчётность · высокая достоверность"
+      },
+      {
+        "id": "R4",
+        "title": "Атаки БПЛА на складскую инфраструктуру",
+        "finding": "Инциденты подтвердили реальность физического поражения крупных логистических объектов и каскадных остановок.",
+        "implication": "Нужна многослойная устойчивость сети.",
+        "source": "https://www.rbc.ru/business/22/07/2026/6a6076749a79476cffd7e8c8"
+      },
+      {
+        "id": "R5",
+        "title": "Страхование складов и изменение тарифов",
+        "finding": "Страховщики переоценивают военные и террористические риски; тарифы и исключения могут ухудшаться.",
+        "implication": "Нужны отдельное покрытие, реестр запасов и доказуемые меры снижения риска.",
+        "source": "https://www.vedomosti.ru/business/news/2026/07/27/1216905-ozon-povisit-tarif"
+      },
+      {
+        "id": "R6",
+        "title": "ФНС: новые правила цифровых платформ",
+        "finding": "С 1 октября 2026 года платформы получают дополнительные обязанности по проверке и взаимодействию с продавцами.",
+        "implication": "Seller OS должен включать автоматизированный комплаенс.",
+        "source": "https://www.nalog.gov.ru/rn19/news/tax_doc_news/16641234/"
+      },
+      {
+        "id": "R7",
+        "title": "Автоматические штрафы и защита потребителей",
+        "finding": "Растёт риск санкций за системные нарушения прав покупателей.",
+        "implication": "Контроль качества и доказательный цифровой след становятся частью экономики доверия.",
+        "source": "https://zpp.rospotrebnadzor.ru/news/federal/576660"
+      },
+      {
+        "id": "R8",
+        "title": "Экономика продавцов на маркетплейсах",
+        "finding": "Комиссии, логистические расходы и требования усиливают чувствительность продавцов к прозрачности условий.",
+        "implication": "Инструменты управления маржой и прогнозирования должны снижать отток.",
+        "source": "https://www.kommersant.ru/doc/8908235"
+      },
+      {
+        "id": "R9",
+        "title": "Рост оплаты курьеров",
+        "finding": "Стоимость курьерского труда продолжает расти быстрее многих потребительских категорий.",
+        "implication": "Нужны плотность маршрутов, ПВЗ и управление минимально рентабельным заказом.",
+        "source": "https://www.vedomosti.ru/business/articles/2026/09/10/1227799-zarplati-kurerov-virosli"
+      },
+      {
+        "id": "R10",
+        "title": "ПВЗ как микро-склады",
+        "finding": "Рыночная дискуссия допускает расширение роли ПВЗ в локальном хранении и выдаче.",
+        "implication": "Часть ПВЗ можно пилотировать как резервный слой последней мили.",
+        "source": "https://www.interfax.ru/amp/1111866"
+      },
+      {
+        "id": "R11",
+        "title": "Ограничения мобильного интернета",
+        "finding": "Региональные ограничения связи нарушают приложения, навигацию и операции последней мили.",
+        "implication": "Критические процессы должны иметь офлайн-режимы и альтернативные каналы связи.",
+        "source": "https://www.rbc.ru/radio/18/03/2026/69bad9cf9a79471ad8f818a9"
+      },
+      {
+        "id": "R12",
+        "title": "Финансовая модель устойчивости",
+        "finding": "Базовый бюджет 42 млрд ₽ и эффект 60 млрд ₽ — подтверждённые 15.09.2026 управленческие допущения, не факты отчётности.",
+        "implication": "Финансирование выдаётся по этапам после проверки внутренних данных и KPI.",
+        "source": "Управленческие допущения · требуется внутренняя верификация"
+      }
+    ],
+    "initiatives": [
+      {
+        "id": "resilience",
+        "name": "I3. Ozon Resilience",
+        "score": 93,
+        "effect": "Критическая непрерывность сети",
+        "complexity": "Очень высокая",
+        "factors": [
+          "S3",
+          "S6",
+          "S7",
+          "W7",
+          "W8",
+          "O11",
+          "T9"
+        ],
+        "why": "Тип: ST + WT-proactive. Снижает экзистенциальный риск остановки логистики и использует масштаб сети, ликвидность и технологии для резервирования потоков."
+      },
+      {
+        "id": "seller-os",
+        "name": "I2. Seller OS + Trust",
+        "score": 89,
+        "effect": "Удержание продавцов и комплаенс",
+        "complexity": "Высокая",
+        "factors": [
+          "S4",
+          "S7",
+          "W5",
+          "O6",
+          "O10",
+          "T5",
+          "T6"
+        ],
+        "why": "Тип: ST + SO + WO. Даёт продавцам прозрачную экономику, AI-инструменты и встроенный комплаенс; поддерживает доверие во время перестройки логистики."
+      },
+      {
+        "id": "profitable-frequency",
+        "name": "I1. Прибыльная частота",
+        "score": 88,
+        "effect": "Рост LTV и маржи заказа",
+        "complexity": "Высокая",
+        "factors": [
+          "S1",
+          "S2",
+          "W4",
+          "O2",
+          "O3",
+          "T8"
+        ],
+        "why": "Тип: SO + WO. Конвертирует масштаб и частоту в рентабельный рост через плотность, корзину и дифференцированную доставку."
+      },
+      {
+        "id": "profit-first",
+        "name": "I6. Profit First Network",
+        "score": 87,
+        "effect": "Дисциплина мощности и затрат",
+        "complexity": "Средняя",
+        "factors": [
+          "S5",
+          "S6",
+          "W1",
+          "W2",
+          "W6",
+          "T10"
+        ],
+        "why": "Тип: WT-proactive. Ограничивает избыточный CAPEX и связывает ввод мощности с подтверждённым спросом."
+      },
+      {
+        "id": "retail-media",
+        "name": "I5. Retail Media 2.0",
+        "score": 83,
+        "effect": "Высокомаржинальная монетизация",
+        "complexity": "Средняя",
+        "factors": [
+          "S1",
+          "S2",
+          "S4",
+          "O5",
+          "W1"
+        ],
+        "why": "Тип: WO + SO. Повышает прибыльность трафика и снижает зависимость E-commerce от торговой маржи."
+      },
+      {
+        "id": "safe-fintech",
+        "name": "I4. Safe Fintech Growth",
+        "score": 82,
+        "effect": "Доход без чрезмерного кредитного риска",
+        "complexity": "Высокая",
+        "factors": [
+          "S5",
+          "W3",
+          "O9",
+          "O12",
+          "T7"
+        ],
+        "why": "Тип: ST + WT-reactive. Смещает рост к платежам и расчётным сервисам при жёстких лимитах риска."
+      }
+    ],
+    "selectedInitiativeId": "resilience",
+    "plan": {
+      "thesis": "За 12 месяцев перевести Ozon от защиты отдельных складов к устойчивости всей сети: выход одного узла не должен приводить к неприемлемым последствиям для людей, длительной остановке региона или потере доверия продавцов.",
+      "target": "Все критические активы классифицированы; в каждом критическом регионе есть резервный маршрут. Целевые допущения: восстановление 80% мощности за 72 часа, страхование или резервирование 95% запасов, автономность критических операций 8 часов. Требуется проверка по внутренним данным.",
+      "roadmap": [
+        {
+          "period": "0–1 месяц",
+          "title": "Стабилизация и командование",
+          "items": [
+            "Единый штаб устойчивости с полномочиями CEO/COO и региональными ответственными",
+            "Карта критичности объектов, запасов, людей, энергии, связи и транспортных коридоров",
+            "Регламенты тревоги: укрытие и эвакуация людей, остановка оборудования, взаимодействие с экстренными службами",
+            "Инженерное обследование кровли, противопожарных отсеков и безопасных зон; радиоэлектронное или физическое противодействие — только через уполномоченные органы и лицензированных подрядчиков",
+            "Заморозка некритичных капитальных проектов до проверки резервирования сети"
+          ]
+        },
+        {
+          "period": "1–3 месяца",
+          "title": "Резервирование и физическая защита",
+          "items": [
+            "Назначить каждому критическому узлу резервный склад, сортировочный центр и альтернативных перевозчиков",
+            "Рассредоточить быстрооборачиваемые и особо ценные запасы; ввести лимит концентрации ущерба",
+            "Пассивная защита: противопожарные секции, автоматическое обнаружение и тушение, дымоудаление, защита опасных зон, резерв воды и энергии",
+            "Согласованные каналы раннего оповещения с региональными властями, Росгвардией, МЧС и операторами инфраструктуры",
+            "Отдельное страховое покрытие и быстрое авансирование подтверждённого ущерба"
+          ]
+        },
+        {
+          "period": "3–6 месяцев",
+          "title": "Автоматизированная непрерывность",
+          "items": [
+            "Цифровой двойник сети и автоматический перевод заказов при закрытии объекта или маршрута",
+            "Офлайн-режимы приёмки, сортировки, выдачи и доставки при ограничениях мобильного интернета",
+            "Единый реестр запасов и ущерба с фотофиксацией и документами для страховой выплаты",
+            "Пилот резервного микрофулфилмента на выбранных ПВЗ и у локальных продавцов",
+            "Seller OS: статус инцидента, перенаправление поставок, прогноз сроков и прозрачная компенсация"
+          ]
+        },
+        {
+          "period": "6–12 месяцев",
+          "title": "Масштабирование и стресс-тест",
+          "items": [
+            "Стандарт устойчивости для всех критических регионов и ключевых партнёров",
+            "Ежеквартальные учения: одновременный выход крупного хаба, связи и транспортного плеча",
+            "Контрактные резервы транспорта, генераторов, связи, временных площадей и ремонтных бригад",
+            "Независимый аудит безопасности людей, пожарной, кибер- и операционной непрерывности",
+            "Следующий инвестиционный транш только после достижения KPI предыдущего этапа"
+          ]
+        }
+      ],
+      "kpis": [
+        {
+          "name": "Критические активы с оценкой риска",
+          "baseline": "Требуются внутренние данные",
+          "target": "100%",
+          "due": "1 месяц"
+        },
+        {
+          "name": "Критические активы с проведёнными учениями",
+          "baseline": "Требуются внутренние данные",
+          "target": "100%",
+          "due": "3 месяца"
+        },
+        {
+          "name": "Региональный объём с резервным маршрутом",
+          "baseline": "Требуются внутренние данные",
+          "target": "≥95%",
+          "due": "3 месяца"
+        },
+        {
+          "name": "Восстановление мощности после потери узла",
+          "baseline": "Требуется проверка",
+          "target": "80% ≤72 ч",
+          "due": "12 месяцев"
+        },
+        {
+          "name": "Запасы застрахованы или зарезервированы",
+          "baseline": "Требуются внутренние данные",
+          "target": "≥95%",
+          "due": "6 месяцев"
+        },
+        {
+          "name": "Полный реестр ущерба после инцидента",
+          "baseline": "Требуется проверка",
+          "target": "≤24 ч",
+          "due": "6 месяцев"
+        },
+        {
+          "name": "Первичное решение о компенсации",
+          "baseline": "Требуется проверка",
+          "target": "≤10 раб. дней",
+          "due": "6 месяцев"
+        },
+        {
+          "name": "Автономность критических операций",
+          "baseline": "Требуются внутренние данные",
+          "target": "100% объектов · 8 ч",
+          "due": "12 месяцев"
+        },
+        {
+          "name": "Новые продавцы прошли обязательную проверку",
+          "baseline": "Требуется проверка",
+          "target": "100%",
+          "due": "С 1 октября 2026"
+        },
+        {
+          "name": "Активные продавцы в панели рисков Seller OS",
+          "baseline": "Требуются внутренние данные",
+          "target": "≥80%",
+          "due": "12 месяцев"
+        }
+      ],
+      "risks": [
+        {
+          "name": "Повторные атаки до завершения программы",
+          "level": "Высокая вероятность · критическое влияние",
+          "mitigation": "Безопасность людей, временное рассредоточение запасов, резервные маршруты и круглосуточный штаб."
+        },
+        {
+          "name": "Ложное чувство безопасности от защиты одного объекта",
+          "level": "Высокая · критическое",
+          "mitigation": "Оценивать восстановление региональной мощности и проводить сценарные учения."
+        },
+        {
+          "name": "Правовые ограничения на антидроновые средства",
+          "level": "Высокая · высокое",
+          "mitigation": "Не применять самовольное подавление или поражение БПЛА; работать через уполномоченные органы и лицензированных операторов."
+        },
+        {
+          "name": "Пожар и вторичный ущерб после попадания",
+          "level": "Средняя · критическое",
+          "mitigation": "Секционирование, автоматическое обнаружение и тушение, резерв воды, удалённое отключение и разделение запасов."
+        },
+        {
+          "name": "Недоступность мобильного интернета и навигации",
+          "level": "Высокая · высокое",
+          "mitigation": "Офлайн-процессы и резервные каналы связи там, где это законно и экономически оправдано."
+        },
+        {
+          "name": "Недостаточное страховое покрытие",
+          "level": "Средняя · высокое",
+          "mitigation": "Отдельные условия покрытия, лимиты по площадкам, актуальный реестр имущества и согласованный пакет доказательств."
+        },
+        {
+          "name": "Перерасход бюджета и распыление CAPEX",
+          "level": "Средняя · высокое",
+          "mitigation": "Поэтапное финансирование 0–1–3–6–12 месяцев и инвестиционные шлюзы по KPI."
+        },
+        {
+          "name": "Потеря доверия продавцов и покупателей",
+          "level": "Высокая · высокое",
+          "mitigation": "Прозрачные статусы, прогноз сроков, альтернативные поставки и быстрые компенсации через Seller OS."
+        }
+      ]
+    },
+    "financial": {
+      "scenarios": [
+        {
+          "id": "conservative",
+          "name": "Консервативный",
+          "revenue": "27 млрд ₽ эффекта · допущение",
+          "roi": "−46,0%",
+          "payback": "За горизонтом",
+          "series": [
+            -10,
+            -26,
+            -31,
+            -28,
+            -23
+          ]
+        },
+        {
+          "id": "base",
+          "name": "Базовый",
+          "revenue": "60 млрд ₽ эффекта · допущение",
+          "roi": "42,9%",
+          "payback": "10 месяцев",
+          "series": [
+            -8,
+            -17,
+            -12,
+            4,
+            18
+          ]
+        },
+        {
+          "id": "optimistic",
+          "name": "Оптимистичный",
+          "revenue": "80 млрд ₽ эффекта · допущение",
+          "roi": "122,2%",
+          "payback": "7 месяцев",
+          "series": [
+            -7,
+            -10.5,
+            2,
+            25,
+            44
+          ]
+        }
+      ]
+    }
+  }
+}
+  </script>
+  <script>
+    const data=JSON.parse(document.getElementById('practicum-data').textContent);const state={strategyStage:'overview',scenario:'base',option:data.strategy.selectedInitiativeId};
+    const stageMap=[['overview','Профиль компании'],['swot','SWOT'],['research','Исследование'],['options','Инициативы'],['plan','План реализации'],['finance','Сценарии']];
+    const esc=(v)=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const badge=()=>`<span class="badge ${data.meta.demo?'demo':''}">${esc(data.meta.label)}</span>`;
+    function head(k,t,s){return `<div class="page-head"><div><div class="kicker">${esc(k)}</div><h1>${esc(t)}</h1><p class="subtitle">${esc(s)}</p></div>${badge()}</div>`}
+    function renderStages(){const stages=stageMap;document.getElementById('stages').innerHTML=stages.map((s,i)=>`<button class="stage ${state.strategyStage===s[0]?'active':''}" data-stage="${s[0]}"><span class="stage-index">${String(i+1).padStart(2,'0')}</span>${esc(s[1])}</button>`).join('')}
+    function lineChart(points,color='#15827b'){const w=760,h=270,p=34,vals=points.map(x=>Number(x.value)),min=Math.min(...vals),max=Math.max(...vals),span=max-min||1;const xy=points.map((d,i)=>({x:p+i*((w-p*2)/Math.max(1,points.length-1)),y:h-p-((d.value-min)/span)*(h-p*2),...d}));const path=xy.map((d,i)=>(i?'L':'M')+d.x+' '+d.y).join(' ');return `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="График"><g stroke="#dce2e7">${[0,1,2,3].map(i=>`<line x1="${p}" x2="${w-p}" y1="${p+i*(h-p*2)/3}" y2="${p+i*(h-p*2)/3}"/>`).join('')}</g><path d="${path}" fill="none" stroke="${color}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>${xy.map(d=>`<circle cx="${d.x}" cy="${d.y}" r="6" fill="${color}"/><text x="${d.x}" y="${d.y-14}" text-anchor="middle" fill="#19253b" font-size="13" font-weight="700">${esc(d.value)}</text><text x="${d.x}" y="${h-7}" text-anchor="middle" fill="#68758d" font-size="12">${esc(d.date)}</text>`).join('')}</svg>`}
+    function strategy(){const s=data.strategy,stage=state.strategyStage;if(stage==='overview')return head('Strategy AI','Текущая позиция '+s.company.name,s.company.description)+`<div class="grid metrics">${s.company.metrics.map(m=>`<article class="card"><div class="metric-value">${esc(m.value)}</div><div class="metric-label">${esc(m.label)}</div></article>`).join('')}</div><section class="section"><h2>Выбранное направление</h2><article class="card"><div class="kicker">Стратегическая теза</div><h2>${esc(s.initiatives.find(x=>x.id===s.selectedInitiativeId)?.name)}</h2><p class="subtitle">${esc(s.plan.thesis)}</p></article></section>`;
+      if(stage==='swot'){const blocks=[['Сильные стороны','strengths','s'],['Слабые стороны','weaknesses','w'],['Возможности','opportunities','o'],['Угрозы','threats','t']];return head('Диагностика','SWOT-анализ','Факторы имеют стабильные ID, чтобы инициативы можно было проследить до исходных наблюдений.')+`<div class="grid swot">${blocks.map(b=>`<article class="card swot-card ${b[2]}"><h3>${b[0]}</h3>${s.swot[b[1]].map(f=>`<div class="factor"><b>${esc(f.id)}</b><span>${esc(f.title)}</span></div>`).join('')}</article>`).join('')}</div>`}
+      if(stage==='research')return head('Market research','Рыночные сигналы','Факты отчётности, актуальные рыночные сигналы и управленческие допущения разделены по источникам.')+`<article class="card">${s.research.map(r=>`<div class="research-row"><div class="research-id">${esc(r.id)}</div><div><h3>${esc(r.title)}</h3><p>${esc(r.finding)}</p><span class="source">${esc(r.source)}</span></div><div><div class="kicker">Значение для компании</div><p>${esc(r.implication)}</p></div></div>`).join('')}</article>`;
+      if(stage==='options')return head('Strategic options','Сравнение инициатив','Нажмите на вариант для локального сравнения. Окончательный выбор фиксирует пользователь через агента.')+`<div class="grid options">${s.initiatives.map(o=>`<article class="card option ${state.option===o.id?'selected':''}" data-option="${o.id}"><div class="score">${o.score}</div><h3>${esc(o.name)}</h3><p>${esc(o.why)}</p><div class="tags"><span class="tag">Эффект: ${esc(o.effect)}</span><span class="tag">Сложность: ${esc(o.complexity)}</span>${o.factors.map(f=>`<span class="tag">${esc(f)}</span>`).join('')}</div>${state.option===o.id?'<span class="selected-label">Выбрано для просмотра</span>':''}</article>`).join('')}</div>`;
+      if(stage==='plan')return head('Implementation','План реализации',s.plan.target)+`<div class="grid timeline">${s.plan.roadmap.map(p=>`<article class="card phase"><span class="period">${esc(p.period)}</span><h3>${esc(p.title)}</h3><ul class="clean-list">${p.items.map(i=>`<li>${esc(i)}</li>`).join('')}</ul></article>`).join('')}</div><section class="section"><h2>KPI</h2><div class="table-wrap"><table><thead><tr><th>Показатель</th><th>Baseline</th><th>Цель</th><th>Срок</th></tr></thead><tbody>${s.plan.kpis.map(k=>`<tr><td>${esc(k.name)}</td><td>${esc(k.baseline)}</td><td>${esc(k.target)}</td><td>${esc(k.due)}</td></tr>`).join('')}</tbody></table></div></section><section class="section"><h2>Ключевые риски</h2><div class="grid two">${s.plan.risks.map(r=>`<article class="card"><h3>${esc(r.name)}</h3><span class="status high">${esc(r.level)}</span><p class="subtitle" style="margin-top:10px">${esc(r.mitigation)}</p></article>`).join('')}</div></section>`;
+      const sc=s.financial.scenarios.find(x=>x.id===state.scenario)||s.financial.scenarios[0];return head('Financial view','Сценарный анализ','Сценарии на 12 месяцев. Финансовые значения — управленческие допущения, требующие внутренней верификации.')+`<div class="scenario-switch">${s.financial.scenarios.map(x=>`<button class="scenario ${x.id===sc.id?'active':''}" data-scenario="${x.id}">${esc(x.name)}</button>`).join('')}</div><article class="card chart-card"><div class="chart">${lineChart(sc.series.map((v,i)=>({date:'M'+(i*3+1),value:v})))}</div><div class="chart-metrics"><div class="chart-metric"><span>Эффект к концу горизонта</span><b>${esc(sc.revenue)}</b></div><div class="chart-metric"><span>ROI</span><b>${esc(sc.roi)}</b></div><div class="chart-metric"><span>Payback</span><b>${esc(sc.payback)}</b></div></div></article>`}
+    function render(){document.getElementById('updated').textContent='Обновлено: '+data.meta.updatedAt;renderStages();document.getElementById('content').innerHTML=strategy();window.scrollTo({top:0,behavior:'smooth'})}
+    document.addEventListener('click',e=>{const stage=e.target.closest('[data-stage]');if(stage){state.strategyStage=stage.dataset.stage;render();return}const option=e.target.closest('[data-option]');if(option){state.option=option.dataset.option;render();return}const scenario=e.target.closest('[data-scenario]');if(scenario){state.scenario=scenario.dataset.scenario;render()}});render();
+  </script>
+</body>
+</html>
