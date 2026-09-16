@@ -1,5 +1,5 @@
 ---
-description: Референсы для практикума - готовые навыки и наборы под продажи, маркетинг, финансы, HR, исследования, почту, документы и задачи. Подборка Константина Башкатова.
+description: Референсы для практикума - готовые навыки и наборы под продажи, маркетинг, финансы, HR, исследования, почту, документы и задачи. Подборка Константина Башкатова со ссылками.
 ---
 # Референсы: готовые навыки под задачу
 
@@ -15,50 +15,60 @@ description: Референсы для практикума - готовые н�
 
 ## Поиск и создание навыков
 
-- **Find Skills** (Vercel) - поиск и установка навыков под задачу.
-- **Skill Creator** (Anthropic) - создание, проверка и улучшение навыков.
+- **[Find Skills](https://www.skills.sh/vercel-labs/skills/find-skills)** (Vercel) - поиск и установка навыков под задачу.
+- **[Skill Creator](https://github.com/anthropics/skills/tree/main/skills/skill-creator)** (Anthropic) - создание, проверка и улучшение навыков.
 
 ## Наборы навыков Anthropic
 
-- **Sales** - клиенты, встречи, звонки, сделки и воронка продаж.
-- **Marketing** - контент, кампании, бренд, конкуренты и SEO.
-- **Finance** - сверки, отчётность, анализ отклонений и закрытие месяца. Требует адаптации
-  под правила учёта.
-- **HR** - подбор, адаптация и оценка сотрудников, кадровая аналитика и вознаграждение.
+- **[Sales](https://github.com/anthropics/knowledge-work-plugins/tree/main/sales)** - клиенты, встречи, звонки, сделки и воронка продаж.
+- **[Marketing](https://github.com/anthropics/knowledge-work-plugins/tree/main/marketing)** - контент, кампании, бренд, конкуренты и SEO.
+- **[Finance](https://github.com/anthropics/knowledge-work-plugins/tree/main/finance)** - сверки, отчётность, анализ отклонений и закрытие месяца.
+  Требует адаптации под правила учёта.
+- **[HR](https://github.com/anthropics/knowledge-work-plugins/tree/main/human-resources)** - подбор, адаптация и оценка сотрудников, кадровая аналитика и вознаграждение.
 
 ## Мышление, объяснения и проверка идей
 
-- **Grill-me** (Matt Pocock, полный навык grilling) - проверка плана или идеи через вопросы.
-- **Office Hours** (Garry Tan) - разбор бизнес-идеи, спроса, клиента и минимального предложения.
-- **ELI5** (Claude Plugins Community) - объяснение сложных тем через наглядную HTML-страницу
-  с крупными иллюстрациями и минимумом текста. Около 1,1 тыс. установок на skills.sh.
+- **[Grill-me](https://github.com/mattpocock/skills/blob/main/skills/productivity/grill-me/SKILL.md)** (Matt Pocock) - проверка плана или идеи через вопросы.
+  Есть и [полный навык grilling](https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md).
+- **[Office Hours](https://github.com/garrytan/gstack/tree/main/office-hours)** (Garry Tan) - разбор бизнес-идеи, спроса, клиента
+  и минимального предложения.
+- **[ELI5](https://www.skills.sh/anthropics/claude-plugins-community/eli5)** (Claude Plugins Community) - объяснение сложных тем через наглядную
+  HTML-страницу с крупными иллюстрациями и минимумом текста. Около 1,1 тыс. установок на skills.sh.
 
 ## Исследования и свежие тенденции
 
-- **Last30Days** - исследование свежих обсуждений и событий по теме в соцсетях и интернете.
-- **GPT Researcher** - исследование по веб-источникам и документам, отчёт со ссылками.
+- **[Last30Days](https://github.com/mvanhorn/last30days-skill)** - исследование свежих обсуждений и событий по теме
+  в соцсетях и интернете.
+- **[GPT Researcher](https://github.com/assafelovic/gpt-researcher)** - исследование по веб-источникам и документам,
+  отчёт со ссылками.
 
 ## Память и база знаний
 
-- **Obsidian Skills** - связанные заметки, карточки и работа с хранилищем.
-- **Knowledge Synthesis** - объединение сведений из разных источников со ссылками.
+- **[Obsidian Skills](https://github.com/kepano/obsidian-skills)** - связанные заметки, карточки и работа с хранилищем.
+- **[Knowledge Synthesis](https://github.com/anthropics/knowledge-work-plugins/blob/main/enterprise-search/skills/knowledge-synthesis/SKILL.md)** - объединение сведений из разных
+  источников со ссылками.
 
 ## Почта, рабочие сервисы и браузер
 
-- **Google Workspace CLI + навыки** - Gmail, Calendar, Drive, Docs и Sheets.
-- **Himalaya** - работа агента с почтой, включая Яндекс и Mail.ru.
-- **Playwright MCP** (Microsoft) - работа агента в браузере: страницы, формы, кнопки и сбор данных.
+- **[Google Workspace CLI + навыки](https://github.com/googleworkspace/cli)** - Gmail, Calendar, Drive,
+  Docs и Sheets.
+- **[Himalaya](https://github.com/pimalaya/himalaya)** - работа агента с почтой, включая Яндекс и Mail.ru.
+- **[Playwright MCP](https://github.com/microsoft/playwright-mcp)** (Microsoft) - работа агента в браузере: страницы,
+  формы, кнопки и сбор данных.
 
 ## Контент, документы и видео
 
-- **Marketing Skills** (Corey Haines) - контентная стратегия, тексты и маркетинговые задачи.
-- **Document Skills** (Anthropic) - создание и редактирование Word, Excel, PowerPoint и PDF.
-- **Remotion** (официальный набор) - создание видео агентом: ролики, анимация, титры и субтитры.
+- **[Marketing Skills](https://github.com/coreyhaines31/marketingskills)** (Corey Haines) - контентная стратегия, тексты
+  и маркетинговые задачи.
+- **[Document Skills](https://github.com/anthropics/skills)** (Anthropic) - создание и редактирование Word,
+  Excel, PowerPoint и PDF.
+- **[Remotion](https://github.com/remotion-dev/skills)** (официальный набор) - создание видео агентом: ролики, анимация,
+  титры и субтитры.
 
 ## Задачи и работа команды
 
-- **Task Management** - задачи и обязательства в общем файле.
-- **Status Report** - сводки по проектам, рискам и решениям.
+- **[Task Management](https://github.com/anthropics/knowledge-work-plugins/blob/main/productivity/skills/task-management/SKILL.md)** - задачи и обязательства в общем файле.
+- **[Status Report](https://github.com/anthropics/knowledge-work-plugins/blob/main/operations/skills/status-report/SKILL.md)** - сводки по проектам, рискам и решениям.
 
 ---
 
