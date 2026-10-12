@@ -54,6 +54,6 @@ description: Манифест Цукерберга «The Future is for Everyone�
 
 ## Связанное
 
-- `ponyatiya.md` - что такое агент, harness, agent.md
+- `ponyatiya.md` - что такое агент, harness, SOUL.md и AGENTS.md
 - `bonus/kto-platit-za-ii.md` - сколько людей в мире и в России реально платят за ИИ
 - `kesy-hermes-30-dney.md` - как из этой рамки получается план на 30 дней
